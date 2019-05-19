@@ -12,6 +12,7 @@ app.set('port',process.env.PORT || 3000);
 
 //Rutas
 require('./src/rutas/rutasTiendas')(app);
+require('./src/rutas/rutasPromocion')(app);
 
 app.listen(app.get('port'), () =>{
   console.log('Server on port',app.get('port'))
