@@ -12,15 +12,28 @@ let modeloTienda = {};
 
 modeloTienda.getTiendas = (callback) => {
     if (connection){
-        connection.query('SELECT * from Tienda ORDER BY nombre',
+        connection.query('SELECT * FROM Tienda ORDER BY nombre',
             (err, rows) => {
                 if (err){
                     throw err
-                }else{
+                } else {
                     callback(null, rows);
                 }
             }
         );
+    }
+}
+
+modeloTienda.getTienda = (id, callback) => {
+    if (connection){
+        connection.query('SELECT * FROM Tienda WHERE id_tienda = ?', id, 
+        (err, row) => {
+            if (err){
+                throw err
+            } else {
+                callback(null, row);
+            }
+        })
     }
 }
 
@@ -62,6 +75,21 @@ modeloTienda.deleteTienda = (id, callback) => {
                 }
             }
         );
+    }
+}
+
+modeloTienda.updateTienda = (datosTienda, callback) => {
+    if (connection) {
+        const sql = "UPDATE Tienda SET categoria = ?, ubicacion = ?, nombre = ? WHERE id_tienda = ?";
+        var data = [datosTienda.categoria, datosTienda.ubicacion, datosTienda.nombre, datosTienda.id]
+
+        connection.query(sql, data, (err, result) => {
+            if (err){
+                throw err;
+            } else {
+                callback(null, {message: 'success', result});
+            }
+        })
     }
 }
 

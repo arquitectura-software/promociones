@@ -2,10 +2,17 @@
 const tienda = require('../modelos/tienda');
 
 var tiendaControllers = {
+
     getTiendas: (req, res) => {
         tienda.getTiendas((err, data) => {
             res.status(200).json(data);
         });
+    },
+
+    getTienda: (req, res) => {
+        tienda.getTienda(parseInt(req.params.id), (err, data) => {
+            res.status(200).json(data);
+        })
     },
 
     addTienda: (req, res) => {
@@ -33,7 +40,6 @@ var tiendaControllers = {
     },
 
     deleteTienda: (req, res) => {
-        console.log(req.params.id)
         tienda.deleteTienda(parseInt(req.params.id), (err, data) =>{
             if (data && data.message == 'Deleted'){
                 res.json({
@@ -48,6 +54,26 @@ var tiendaControllers = {
             } else {
                 res.status(500).json({
                     message: 'error'
+                })
+            }
+        })
+    },
+
+    updateTienda: (req, res) => {
+        const newDatos = {
+            id: parseInt(req.params.id),
+            categoria: req.body.categoria,
+            ubicacion: req.body.ubicacion,
+            nombre: req.body.nombre
+        }
+
+        tienda.updateTienda(newDatos, (err, data) => {
+            if(data && data.message){
+                res.json(data)
+            } else {
+                res.status(500).json({
+                    success: false,
+                    message: 'Error'
                 })
             }
         })
