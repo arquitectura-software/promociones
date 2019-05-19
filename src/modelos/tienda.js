@@ -38,4 +38,31 @@ modeloTienda.insertarTienda = (datosTienda, callback) => {
     }
 }
 
+modeloTienda.deleteTienda = (id, callback) => {
+    if (connection){
+        let consulta = 'SELECT * FROM Tienda WHERE id_tienda = ?';
+        connection.query(consulta, id, 
+            (err, row) => {
+                if (row){
+                    let sql = 'DELETE FROM Tienda where id_tienda = ?';
+                    connection.query(sql, id, 
+                    (err, result) => {
+                        if (err){
+                            throw err
+                        }else {
+                            callback(null, {
+                                "message": "Deleted"
+                            })
+                        }
+                    })
+                } else {
+                    callback(null, {
+                        'message': "element not exists"
+                    })
+                }
+            }
+        );
+    }
+}
+
 module.exports = modeloTienda;
