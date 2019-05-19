@@ -17,7 +17,21 @@ modeloTienda.getTiendas = (callback) => {
                 if (err){
                     throw err
                 }else{
-                    callback(null, rows)
+                    callback(null, rows);
+                }
+            }
+        );
+    }
+}
+
+modeloTienda.insertarTienda = (datosTienda, callback) => {
+    if (connection) {
+        connection.query('INSERT INTO Tienda SET ?', datosTienda,
+            (err, result) => {
+                if (err) {
+                    throw err;
+                } else {
+                    callback(null, result)
                 }
             }
         );
