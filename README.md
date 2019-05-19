@@ -2,7 +2,7 @@
 
 API que ofrece el microservicio de operaciones CRUD para las promociones de la aplicacion BreakTime.
 
-###Realizada por:
+### Realizada por:
 
 - Alejandro Sebastián Alejo Patarroyo
 - Nicolás Gómez Gutiérrez
