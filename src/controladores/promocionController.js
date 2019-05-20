@@ -16,12 +16,14 @@ var promocionControllers = {
     },
 
     addPromocion: (req, res) => {
+
         const datosPromocion = {
             id_promocion: null,
             id_tienda: parseInt(req.body.id_tienda),
             descripcion: req.body.descripcion,
             fecha_inicio: new Date(req.body.fecha_inicio),
             fecha_fin: new Date(req.body.fecha_fin)
+            
         }
 
         promocion.addPromocion(datosPromocion, (err, data) => {
