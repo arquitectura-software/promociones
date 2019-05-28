@@ -1,5 +1,5 @@
 
-CREATE DATABASE Promociones;
+CREATE DATABASE IF NOT EXISTS Promociones;
 use Promociones;
 
 
@@ -33,3 +33,6 @@ CREATE TABLE IF NOT EXISTS Promocion (
 ) ENGINE=InnoDB DEFAULT CHARACTER SET = utf8;
 
 DESCRIBE Promocion;
+
+ALTER USER 'mysql'@'%' IDENTIFIED WITH mysql_native_password BY '1234';
+FLUSH PRIVILEGES;
