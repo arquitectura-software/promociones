@@ -11,7 +11,12 @@ var tiendaControllers = {
 
     getTienda: (req, res) => {
         tienda.getTienda(parseInt(req.params.id), (err, data) => {
-            res.status(200).json(data);
+            res.status(200).json({
+                id_tienda: data[0].id_tienda,
+                categoria: data[0].categoria,
+                ubicacion: data[0].ubicacion,
+                nombre: data[0].nombre
+            });
         })
     },
 
