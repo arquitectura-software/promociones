@@ -26,9 +26,10 @@ var tiendaControllers = {
         tienda.insertarTienda(datosTienda, (err, data) => {
             if (data) {
                 res.json({
-                    success: true,
-                    msg: 'tienda insertada',
-                    data: data
+                    id_tienda: null,
+                    categoria: datosTienda.categoria,
+                    ubicacion: datosTienda.ubicacion,
+                    nombre: datosTienda.nombre
                 })
             } else {
                 res.status(500).json({
@@ -43,8 +44,7 @@ var tiendaControllers = {
         tienda.deleteTienda(parseInt(req.params.id), (err, data) =>{
             if (data && data.message == 'Deleted'){
                 res.json({
-                    success: true,
-                    data
+                    id: req.params.id
                 })
             }
             else if (data && data.message == 'element not exists'){
@@ -69,7 +69,12 @@ var tiendaControllers = {
 
         tienda.updateTienda(newDatos, (err, data) => {
             if(data && data.message){
-                res.json(data)
+                res.json({
+                    id: newDatos.id,
+                    categoria: newDatos.categoria,
+                    ubicacion: newDatos.ubicacion,
+                    nombre: newDatos.nombre    
+                })
             } else {
                 res.status(500).json({
                     success: false,

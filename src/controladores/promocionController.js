@@ -23,15 +23,16 @@ var promocionControllers = {
             descripcion: req.body.descripcion,
             fecha_inicio: new Date(req.body.fecha_inicio),
             fecha_fin: new Date(req.body.fecha_fin)
-            
         }
 
         promocion.addPromocion(datosPromocion, (err, data) => {
             if (data && !data.message) {
                 res.json({
-                    success: true,
-                    msg: 'promocion insertada',
-                    data: data
+                    id_promocion: null,
+                    id_tienda: datosPromocion.id_tienda,
+                    descripcion: datosPromocion.descripcion,
+                    fecha_inicio: datosPromocion.fecha_inicio,
+                    fecha_fin: datosPromocion.fecha_fin
                 })
             } else {
                 res.status(500).json({
@@ -46,8 +47,7 @@ var promocionControllers = {
         promocion.deletePromocion(parseInt(req.params.id), (err, data) =>{
             if (data && data.message == 'Deleted'){
                 res.json({
-                    success: true,
-                    data
+                    id: parseInt(req.params.id)
                 })
             }
             else if (data && data.message == 'element not exists'){
@@ -73,7 +73,13 @@ var promocionControllers = {
 
         promocion.updatePromocion(newDatos, (err, data) => {
             if(data && data.message){
-                res.json(data)
+                res.json({
+                    id_promocion: datosPromocion.id_promocion,
+                    id_tienda: datosPromocion.id_tienda,
+                    descripcion: datosPromocion.descripcion,
+                    fecha_inicio: datosPromocion.fecha_inicio,
+                    fecha_fin: datosPromocion.fecha_fin
+                })
             } else {
                 res.status(500).json({
                     success: false,
