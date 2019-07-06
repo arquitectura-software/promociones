@@ -49,7 +49,7 @@ var tiendaControllers = {
         tienda.deleteTienda(parseInt(req.params.id), (err, data) =>{
             if (data && data.message == 'Deleted'){
                 res.json({
-                    //id: parseInt(req.params.id)
+                    id: parseInt(req.params.id)
                 })
             }
             else if (data && data.message == 'element not exists'){
