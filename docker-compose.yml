@@ -1,7 +1,8 @@
 version: '2.1'
 
 services:
-  db:
+
+  promociones-db:
     build: ./db
     environment:
       MYSQL_DATABASE: Promociones
@@ -9,7 +10,8 @@ services:
       MYSQL_USER: mysql
       MYSQL_PASSWORD: 1234
       DATABASE_HOST: db
-  promociones:
+
+  promociones-ms:
     build: .
     environment:
       NODE_ENV: production
@@ -19,7 +21,7 @@ services:
       MYSQL_USER: mysql
       MYSQL_PASSWORD: 1234
     ports:
-      - "3000:3000"
+      - "3004:3000"
     depends_on:
-      - db
+      - promociones-db
     restart: on-failure
