@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 //Settings
-app.set('port',process.env.PORT || 3000);
+app.set('port',process.env.PORT || 3004);
 
 //Rutas
 require('./src/rutas/rutasTiendas')(app);

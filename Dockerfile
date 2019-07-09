@@ -6,3 +6,4 @@ RUN npm install --production --silent && mv node_modules ../
 COPY . .
 EXPOSE 3004
 CMD npm start
+
