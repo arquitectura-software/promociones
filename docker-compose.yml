@@ -10,13 +10,15 @@ services:
       MYSQL_USER: mysql
       MYSQL_PASSWORD: 1234
       DATABASE_HOST: db
+    ports:
+      - 3309:3306
 
   promociones-ms:
     build: .
     environment:
       NODE_ENV: production
       DATABASE_HOST: db
-      MYSQL_PORT: 3302
+      MYSQL_PORT: 3309
       MYSQL_DATABASE: Promociones
       MYSQL_USER: mysql
       MYSQL_PASSWORD: 1234
