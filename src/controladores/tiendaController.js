@@ -31,7 +31,6 @@ var tiendaControllers = {
         tienda.insertarTienda(datosTienda, (err, data) => {
             if (data) {
                 res.json({
-                    id_tienda: null,
                     categoria: datosTienda.categoria,
                     ubicacion: datosTienda.ubicacion,
                     nombre: datosTienda.nombre

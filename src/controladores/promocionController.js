@@ -28,7 +28,6 @@ var promocionControllers = {
         promocion.addPromocion(datosPromocion, (err, data) => {
             if (data && !data.message) {
                 res.json({
-                    id_promocion: null,
                     id_tienda: datosPromocion.id_tienda,
                     descripcion: datosPromocion.descripcion,
                     fecha_inicio: datosPromocion.fecha_inicio,
